@@ -5,6 +5,7 @@
 #include "hardware/clocks.h"
 #include "hardware/structs/scb.h"
 #include "hardware/pll.h"
+#include "hardware/pwm.h" 
 #include <stdio.h>
 
 const int rightDot = 26;
@@ -52,7 +53,92 @@ int num4 = 0;
 int buttonGreenValuePrev = 0, buttonRedValuePrev = 0, buttonAValuePrev = 0, buttonBValuePrev = 0;
 bool timerExp = false;
 
-// Funzioni di display
+// Funzioni di display piccolo
+void littleOne()
+{
+	gpio_put(rightDot, 0);
+	gpio_put(rightUnder3, 1);
+	gpio_put(rightUnder2, 0);
+	gpio_put(rightUnder1, 0);
+
+	gpio_put(rightOver4, 0);
+	gpio_put(rightOver3, 1);
+	gpio_put(rightOver2, 0);
+	gpio_put(rightOver1, 0);
+}
+
+
+
+void littleFive()
+{
+	gpio_put(rightDot, 0);
+	gpio_put(rightUnder3, 1);
+	gpio_put(rightUnder2, 1);
+	gpio_put(rightUnder1, 0);
+
+	gpio_put(rightOver4, 1);
+	gpio_put(rightOver3, 1);
+	gpio_put(rightOver2, 1);
+	gpio_put(rightOver1, 0);
+}
+
+
+void littleThree()
+{
+	gpio_put(rightDot, 0);
+	gpio_put(rightUnder3, 1);
+	gpio_put(rightUnder2, 1);
+	gpio_put(rightUnder1, 0);
+
+	gpio_put(rightOver4, 1);
+	gpio_put(rightOver3, 0);
+	gpio_put(rightOver2, 1);
+	gpio_put(rightOver1, 1);
+}
+
+void littleEight()
+{
+	gpio_put(rightDot, 1);
+	gpio_put(rightUnder3, 1);
+	gpio_put(rightUnder2, 1);
+	gpio_put(rightUnder1, 0);
+
+	gpio_put(rightOver4, 1);
+	gpio_put(rightOver3, 1);
+	gpio_put(rightOver2, 1);
+	gpio_put(rightOver1, 1);
+}
+
+
+
+void littleZero()
+{
+	gpio_put(rightDot, 1);
+	gpio_put(rightUnder3, 1);
+	gpio_put(rightUnder2, 1);
+	gpio_put(rightUnder1, 1);
+
+	gpio_put(rightOver4, 0);
+	gpio_put(rightOver3, 1);
+	gpio_put(rightOver2, 1);
+	gpio_put(rightOver1, 1);
+}
+
+
+
+void littleEmpty()
+{
+	gpio_put(rightDot, 0);
+	gpio_put(rightUnder3, 0);
+	gpio_put(rightUnder2, 0);
+	gpio_put(rightUnder1, 0);
+
+	gpio_put(rightOver4, 0);
+	gpio_put(rightOver3, 0);
+	gpio_put(rightOver2, 0);
+	gpio_put(rightOver1, 0);
+}
+// Funzioni di display grande
 void bigZero() {
     gpio_put(big1, 1);
     gpio_put(big4, 1);
@@ -77,67 +163,67 @@ void bigOne() {
 
 void bigTwo() {
     gpio_put(big1, 1);
-    gpio_put(big4, 1);
-    gpio_put(big5, 0);
+    gpio_put(big4, 0);
+    gpio_put(big5, 1);
     gpio_put(big8, 1);
-    gpio_put(big9, 1);
-    gpio_put(big10, 0);
-    gpio_put(bigDot, 1);
+    gpio_put(big9, 0);
+    gpio_put(big10, 1);
+    gpio_put(bigDot, 0);
     gpio_put(big12, 1);
 }
 
 void bigThree() {
-    gpio_put(big1, 1);
-    gpio_put(big4, 1);
-    gpio_put(big5, 0);
-    gpio_put(big8, 1);
-    gpio_put(big9, 1);
-    gpio_put(big10, 1);
-    gpio_put(bigDot, 1);
-    gpio_put(big12, 0);
-}
-
-void bigFour() {
     gpio_put(big1, 1);
     gpio_put(big4, 0);
     gpio_put(big5, 1);
     gpio_put(big8, 1);
     gpio_put(big9, 1);
     gpio_put(big10, 1);
-    gpio_put(bigDot, 1);
+    gpio_put(bigDot, 0);
+    gpio_put(big12, 0);
+}
+
+void bigFour() {
+    gpio_put(big1, 1);
+    gpio_put(big4, 1);
+    gpio_put(big5, 0);
+    gpio_put(big8, 1);
+    gpio_put(big9, 1);
+    gpio_put(big10, 0);
+    gpio_put(bigDot, 0);
     gpio_put(big12, 0);
 }
 
 void bigFive() {
-    gpio_put(big1, 1);
+    gpio_put(big1, 0);
     gpio_put(big4, 1);
     gpio_put(big5, 1);
     gpio_put(big8, 1);
-    gpio_put(big9, 0);
+    gpio_put(big9, 1);
     gpio_put(big10, 1);
-    gpio_put(bigDot, 1);
+    gpio_put(bigDot, 0);
     gpio_put(big12, 0);
 }
 
 void bigSix() {
-    gpio_put(big1, 1);
+    gpio_put(big1, 0);
     gpio_put(big4, 1);
     gpio_put(big5, 1);
     gpio_put(big8, 1);
-    gpio_put(big9, 0);
+    gpio_put(big9, 1);
     gpio_put(big10, 1);
-    gpio_put(bigDot, 1);
+    gpio_put(bigDot, 0);
     gpio_put(big12, 1);
 }
 
 void bigSeven() {
     gpio_put(big1, 1);
     gpio_put(big4, 0);
-    gpio_put(big5, 0);
+    gpio_put(big5, 1);
     gpio_put(big8, 0);
     gpio_put(big9, 1);
-    gpio_put(big10, 1);
-    gpio_put(bigDot, 1);
+    gpio_put(big10, 0);
+    gpio_put(bigDot, 0);
     gpio_put(big12, 0);
 }
 
@@ -148,7 +234,7 @@ void bigEight() {
     gpio_put(big8, 1);
     gpio_put(big9, 1);
     gpio_put(big10, 1);
-    gpio_put(bigDot, 1);
+    gpio_put(bigDot, 0);
     gpio_put(big12, 1);
 }
 
@@ -159,7 +245,7 @@ void bigNine() {
     gpio_put(big8, 1);
     gpio_put(big9, 1);
     gpio_put(big10, 1);
-    gpio_put(bigDot, 1);
+    gpio_put(bigDot, 0);
     gpio_put(big12, 0);
 }
 
@@ -175,14 +261,45 @@ void bigEmpty() {
 }
 
 // Funzioni buzzer
+
+static void buzzer_set_freq(uint32_t freq_hz) {
+    // configura il pin come PWM
+    gpio_set_function(buzzer, GPIO_FUNC_PWM);
+    uint slice = pwm_gpio_to_slice_num(buzzer);
+    uint chan = pwm_gpio_to_channel(buzzer);
+
+    // scegli un wrap per risoluzione (es. 1000)
+    const uint32_t wrap = 1000;
+
+    // calcola clkdiv: freq = sys_clk / (wrap+1) / clkdiv
+    const float sys_hz = (float)clock_get_hz(clk_sys);
+    float clkdiv = sys_hz / ((wrap + 1) * (float)freq_hz);
+    if (clkdiv < 0.01f) clkdiv = 0.01f;
+
+    pwm_set_clkdiv(slice, clkdiv);
+    pwm_set_wrap(slice, wrap);
+    // 50% duty = massimo "volume" acustico tipico per buzzer
+    pwm_set_chan_level(slice, chan, wrap / 2);
+    pwm_set_enabled(slice, true);
+}
+
+
 void sound() {
-    gpio_put(buzzer, 1);
+    // genera 3000 Hz per 500 ms
+    buzzer_set_freq(3000);
     sleep_ms(500);
+    // fermati alla fine
+    uint slice = pwm_gpio_to_slice_num(buzzer);
+    pwm_set_enabled(slice, false);
+    // ritorna pin a SIO e a livello basso
+    gpio_set_function(buzzer, GPIO_FUNC_SIO);
     gpio_put(buzzer, 0);
-    sleep_ms(500);
 }
 
 void silence() {
+    uint slice = pwm_gpio_to_slice_num(buzzer);
+    pwm_set_enabled(slice, false);
+    gpio_set_function(buzzer, GPIO_FUNC_SIO);
     gpio_put(buzzer, 0);
 }
 
@@ -197,15 +314,19 @@ void resetTimer() {
     switch (timerLevel) {
         case 1:
             timer = 3;
+            littleThree();
             break;
         case 2:
             timer = 5;
+            littleFive();
             break;
         case 3:
             timer = 8;
+            littleEight();
             break;
         case 4:
             timer = 10;
+            littleZero();
             break;
         default:
             break;
@@ -340,6 +461,7 @@ int main() {
             calcDisplay();
 
 
+            // Prepare to enter dormant mode until button press
             bool wake_high = true; // button pin goes high when pressed
             uint gpio_button = button2;
 
@@ -350,6 +472,11 @@ int main() {
                 gpio_pull_up(gpio_button);   // button pulls to GND when pressed
             }
 
+            // disable all outputs
+            littleEmpty();
+            bigEmpty();
+            silence();
+            
             // small debounce / ensure we will get an edge
             sleep_ms(20);
 

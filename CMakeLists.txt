@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
 
 add_executable(my_pico main.cpp)
-target_link_libraries(my_pico pico_stdlib hardware_clocks hardware_sleep hardware_rosc)
+target_link_libraries(my_pico pico_stdlib hardware_pwm hardware_clocks hardware_sleep hardware_rosc)
 
 # pico_enable_stdio_usb(my_pico 1)
 # pico_enable_stdio_uart(my_pico 1)
